@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Breaking LTE on Layer Two</title>
+    <title>IMP4GT: IMPersonation Attacks in 4G NeTworks</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,6 +13,7 @@
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:300,400);
         @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+
         figure.snip1390 {
             font-family: 'Roboto', Arial, sans-serif;
             position: relative;
@@ -102,29 +103,38 @@
     <header>
 
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark elegant-color-dark">
-            <a class="navbar-brand smooth-scroll" href="/index.html#intro">aLTEr</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-                aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand smooth-scroll" href="/index.html#intro">IMP4GT</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <!-- Left -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav mr-auto smooth-scroll">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/index.html#intro">Introduction</a>
+                            <a class="nav-link" href="index.html#intro">Introduction</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/index.html#passive">Passive Attacks</a>
+                            <a class="nav-link" href="index.html#attacks">IMP4GT Attacks</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/index.html#active">Active Attack</a>
+                            <a class="nav-link" href="index.html#results">Results</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/index.html#paper">Paper</a>
+                            <a class="nav-link" href="index.html#affected">Am I affected?</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/index.html#faq">FAQ</a>
+                            <a class="nav-link" href="index.html#consequences">Consequences</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#4G_5G">Is 5G vulnerable?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#paper">Paper</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#faq">FAQ</a>
                         </li>
                     </ul>
                 </ul>
@@ -132,45 +142,45 @@
         </nav>
     </header>
 
-<div class="pt-5 mx-lg-5">
-  <div class="container" id="title">
-        <br>
-        <div class="row d-flex justify-content-center">
-            <div class="col text-center col-md-auto">
-                <figure class="snip1390">
-                    <img src="images/d_rupprecht_small.jpg" alt="profile-sample3" class="profile" />
-                    <figcaption>
-                        <h2>David Rupprecht</h2>
-                        <br>
-                        <p class="white-text">Ruhr-University Bochum<br>Information Security Group</p>
-                        <br>
-                        <p class="card-text">
-                            <a href="mailto:david.rupprecht@rub.de" style="text-decoration: none">
-                                <i class="fa fa-envelope fa-2x white-text" aria-hidden="true"></i>
-                            </a>
-                            &nbsp
-                            <a href="http://infsec.rub.de/lehrstuhl/mitarbeiter/rupprecht/">
-                                <i class="fa fa-address-card fa-2x white-text" aria-hidden="true"></i>
-                            </a>
-                            &nbsp
-                            <a href="https://twitter.com/pily112">
-                                <i class="fa fa-twitter fa-2x white-text" aria-hidden="true"></i>
-                            </a>
-                            
-                        </p>
-                    </figcaption>
-                </figure>
-            </div>
+    <div class="pt-5 mx-lg-5">
+        <div class="container" id="title">
+            <br>
+            <div class="row d-flex justify-content-center">
+                <div class="col text-center col-md-auto">
+                    <figure class="snip1390">
+                        <img src="images/d_rupprecht_small.jpg" alt="profile-sample3" class="profile" />
+                        <figcaption>
+                            <h2>David Rupprecht</h2>
+                            <br>
+                            <p class="white-text">Ruhr-University Bochum<br>Information Security Group</p>
+                            <br>
+                            <p class="card-text">
+                                <a href="mailto:david.rupprecht@rub.de" style="text-decoration: none">
+                                    <i class="fa fa-envelope fa-2x white-text" aria-hidden="true"></i>
+                                </a>
+                                &nbsp
+                                <a href="http://infsec.rub.de/lehrstuhl/mitarbeiter/rupprecht/">
+                                    <i class="fa fa-address-card fa-2x white-text" aria-hidden="true"></i>
+                                </a>
+                                &nbsp
+                                <a href="https://twitter.com/pily112">
+                                    <i class="fa fa-twitter fa-2x white-text" aria-hidden="true"></i>
+                                </a>
 
-            <div class="col text-center col-md-auto">
-                <figure class="snip1390">
-                    <img src="images/katha_klein.png" alt="profile-sample3" class="profile" />
-                    <figcaption>
-                        <h2>Katharina Kohls</h2>
-                        <br>
-                        <p class="white-text">Ruhr-University Bochum<br>Information Security Group</p>
-                        <br>
-                        <p class="card-text">
+                            </p>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <div class="col text-center col-md-auto">
+                    <figure class="snip1390">
+                        <img src="images/katha_klein.png" alt="profile-sample3" class="profile" />
+                        <figcaption>
+                            <h2>Katharina Kohls</h2>
+                            <br>
+                            <p class="white-text">Ruhr-University Bochum<br>Information Security Group</p>
+                            <br>
+                            <p class="card-text">
                                 <a href="mailto:katharina.kohls@rub.de" style="text-decoration: none">
                                     <i class="fa fa-envelope fa-2x white-text" aria-hidden="true"></i>
                                 </a>
@@ -178,22 +188,22 @@
                                 <a href="http://infsec.rub.de/lehrstuhl/mitarbeiter/kohls/">
                                     <i class="fa fa-address-card fa-2x white-text" aria-hidden="true"></i>
                                 </a>
-                               
-                              
-                            </p>
-                    </figcaption>
-                </figure>
-            </div>
 
-            <div class="col text-center col-md-auto">
-                <figure class="snip1390">
-                    <img src="images/Thorsten_quer_ws.jpg" alt="profile-sample3" class="profile" />
-                    <figcaption>
-                        <h2>Thorsten Holz</h2>
-                        <br>
-                        <p class="white-text">Ruhr-University Bochum<br>Chair for Systems Security</p>
-                        <br>
-                        <p class="card-text">
+
+                            </p>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <div class="col text-center col-md-auto">
+                    <figure class="snip1390">
+                        <img src="images/Thorsten_quer_ws.jpg" alt="profile-sample3" class="profile" />
+                        <figcaption>
+                            <h2>Thorsten Holz</h2>
+                            <br>
+                            <p class="white-text">Ruhr-University Bochum<br>Chair for Systems Security</p>
+                            <br>
+                            <p class="card-text">
                                 <a href="mailto:thorsten.holz@rub.de" style="text-decoration: none">
                                     <i class="fa fa-envelope fa-2x white-text" aria-hidden="true"></i>
                                 </a>
@@ -205,21 +215,21 @@
                                 <a href="https://twitter.com/thorstenholz">
                                     <i class="fa fa-twitter fa-2x white-text" aria-hidden="true"></i>
                                 </a>
-                                
-                            </p>
-                    </figcaption>
-                </figure>
-            </div>
 
-            <div class="col text-center col-md-auto">
-                <figure class="snip1390">
-                    <img src="images/Christina.png" alt="profile-sample3" class="profile" />
-                    <figcaption>
-                        <h2>Christina Pöpper</h2>
-                        <br>
-                        <p class="white-text">New York University Abu Dhabi<br>Center for Cyber Security NYUAD</p>
-                        <br>
-                        <p class="card-text">
+                            </p>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <div class="col text-center col-md-auto">
+                    <figure class="snip1390">
+                        <img src="images/Christina.png" alt="profile-sample3" class="profile" />
+                        <figcaption>
+                            <h2>Christina Pöpper</h2>
+                            <br>
+                            <p class="white-text">New York University Abu Dhabi<br>Center for Cyber Security NYUAD</p>
+                            <br>
+                            <p class="card-text">
                                 <a href="mailto:christina.poepper@nyu.edu" style="text-decoration: none">
                                     <i class="fa fa-envelope fa-2x white-text" aria-hidden="true"></i>
                                 </a>
@@ -227,60 +237,60 @@
                                 <a href="http://poepper.net/">
                                     <i class="fa fa-address-card fa-2x white-text" aria-hidden="true"></i>
                                 </a>
-                                
+
                             </p>
-                    </figcaption>
-                </figure>
+                        </figcaption>
+                    </figure>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Footer -->
-<footer class="page-footer font-small elegant-color-dark pt-4 mt-4">
+    <!-- Footer -->
+    <footer class="page-footer font-small elegant-color-dark pt-4 mt-4">
 
-  <!-- Footer Links -->
-  <div class="container-fluid text-center text-md-left">
+        <!-- Footer Links -->
+        <div class="container-fluid text-center text-md-left">
 
-    <!-- Grid row -->
-    <div class="row">
+            <!-- Grid row -->
+            <div class="row">
 
-      <!-- Grid column -->
-      <div class="col-md-6 mt-md-0 mt-3">
+                <!-- Grid column -->
+                <div class="col-md-6 mt-md-0 mt-3">
 
-        <!-- Content -->
-        <h5 class="text-uppercase">Breaking LTE on Layer Two</h5>
-        <p>David Rupprecht, Katharina Kohls, Thorsten Holz, and Christina P&ouml;pper</br>
-            Ruhr-Universit&auml;t Bochum &amp; New York University Abu Dhabi</p>
+                    <!-- Content -->
+                    <h5 class="text-uppercase">Breaking LTE on Layer Two</h5>
+                    <p>David Rupprecht, Katharina Kohls, Thorsten Holz, and Christina P&ouml;pper</br>
+                        Ruhr-Universit&auml;t Bochum &amp; New York University Abu Dhabi</p>
 
-      </div>
-      <!-- Grid column -->
+                </div>
+                <!-- Grid column -->
 
-      <hr class="clearfix w-100 d-md-none pb-3">
+                <hr class="clearfix w-100 d-md-none pb-3">
 
-      <!-- Grid column -->
-      <div class="col-md-6 mb-md-0 mb-3">
+                <!-- Grid column -->
+                <div class="col-md-6 mb-md-0 mb-3">
 
-        <!-- Links -->
-        <h5 class="text-uppercase"><a href="/contact.html">Contact</a></h5>
-        <h5 class="text-uppercase"><a href="/privacy.html">Privacy</a></h5>
-      </div>
-      <!-- Grid column -->
+                    <!-- Links -->
+                    <h5 class="text-uppercase"><a href="/contact.html">Contact</a></h5>
+                    <h5 class="text-uppercase"><a href="/privacy.html">Privacy</a></h5>
+                </div>
+                <!-- Grid column -->
 
-    </div>
-    <!-- Grid row -->
+            </div>
+            <!-- Grid row -->
 
-  </div>
-  <!-- Footer Links -->
+        </div>
+        <!-- Footer Links -->
 
-  <!-- Copyright -->
-  <!--<div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <!-- Copyright -->
+        <!--<div class="footer-copyright text-center py-3">© 2018 Copyright:
     <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
   </div>-->
-  <!-- Copyright -->
+        <!-- Copyright -->
 
-</footer>
-<!-- Footer -->
+    </footer>
+    <!-- Footer -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
