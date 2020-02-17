@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>IMP4GT: IMPersonation Attacks in 4G NeTworks</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <link href="css/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark elegant-color-dark">
+      <div class="smooth-scroll">
+        <a class="navbar-brand smooth-scroll" href="#title">IMP4GT</a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <!-- Left -->
+          <ul class="navbar-nav mr-auto smooth-scroll">
+            <li class="nav-item active">
+              <a class="nav-link" href="#intro">Introduction</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#attacks">IMP4GT Attacks</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#results">Results</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#affected">Am I affected?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#consequences">Consequences</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#4G_5G">Is 5G vulnerable?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#paper">Paper</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#faq">FAQ</a>
+            </li>
+          </ul>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <br>
+
+  <div class="pt-5 mx-lg-5">
+    <div class="container" id="title">
+      <div class="jumbotron">
+        <div class="row">
+          <div class="col-sm-2">
+            <img src="images/imp4gt_man.png" width="100%" alt="">
+          </div>
+          <div class="col-sm-10">
+            <h1 class="h1-responsive">IMP4GT: IMPersonation Attacks in 4G NeTworks</h1>
+            <hr class="my-2">
+
+            <p>David Rupprecht, Katharina Kohls, Thorsten Holz, and Christina P&ouml;pper</p>
+            <p> Ruhr University Bochum &amp; New York University Abu Dhabi</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="container" id="intro">
+      <h1 class="display-4">Introduction</h1>
+      <hr>
+
+      <br>
+
+      <div class="row">
+        <div class="col-sm-7">
+          <p>
+            In mobile networks, <a href="https://en.wikipedia.org/wiki/Mutual_authentication">mutual
+            authentication</a> ensures that the smartphone and the network can verify their identities. In <a
+            href="https://en.wikipedia.org/wiki/LTE_(telecommunication)">LTE</a>, mutual authentication is established
+            on the control plane with a provably secure authentication and key agreement protocol. However, missing
+            integrity protection of the user plane still allows an adversary to <a href="https://alter-attack.net">
+            manipulate and redirect IP packets</a>.
+          </p>
+
+          <p>
+            The IMP4GT (IMPersonation Attacks in 4G NeTworks) attacks exploit the missing integrity protection, and extend it with an attack mechanism on layer three which allows an attacker to <em>impersonate</em> a user towards the network and vice versa. We conduct two IMP4GT variants in a LTE commercial network and demonstrate how this completely breaks the mutual authentication of the user plane LTE and early <a href=https://en.wikipedia.org/wiki/5G>5G </a> networks.
+          </p>
+
+          <p>
+            In the following, we provide an overview of the IMP4GT attacks and their implications. Our work will appear at the <a href="https://www.ndss-symposium.org/">NDSS Symposium 2020</a> and all details are available in a <a href="#paper">pre-print version of the paper</a>.
+          </p>
+
+              
+        </div>
+        <div class="col-sm-5">
+          <img src="images/mutual_authentication.png" width="100%" class="img-fluid" alt="Responsive image">
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="container" id="attacks">
+      <h1 class="display-4">IMP4GT Attacks</h1>
+      <hr>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
+          <img src="images/imp4gt_attack_vector.png" width="85%" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-sm-6">
+          <h2>What does IMP4GT exploit?</h2>
+          <p>
+            The IMP4GT attacks exploit the missing integrity protection for user data, and a reflection mechanism of the IP stack mobile operating system. We can make use of the reflection mechanism to build an encryption and decryption oracle. Along with the lack of integrity protection, this allows to inject arbitrary packets and to decrypt packets (see <a href="#paper"> paper </a> for details).
+          </p>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-sm-7">
+          <h2>Attack Variants</h2>
+          <p>The impersonation can be conducted in uplink or in downlink direction:
+            <ul>
+              <li>
+                With the <b>uplink impersonation</b>, the attacker impersonates a victim towards the network and can use arbitrary IP services (websites) with the identity of the victim. All traffic generated by the attacker is associated with the victim's IP address.
+              </li>
+              <li>
+                The <b>downlink impersonation</b> allows an attacker to establish a TCP/IP connection to the phone that bypasses any firewall mechanism of the LTE network. The attacker is not able to break any security mechanism above the IP layer.
+              </li>
+            </ul>
+          </p>
+        </div>
+        <div class="col-sm-5">
+          <img src="images/uplink_downlink.png" width="85%" class="img-fluid" alt="Responsive image">
+        </div>
+      </div>
+
+      <br>
+
+
+      <br>
+
+
+    </div>
+
+    <br>
+
+    <div class="container" id="results">
+      <h1 class="display-4">Results</h1>
+      <hr>
+
+      <div class="row">
+
+        <div class="col-sm-2">
+          <img src="images/lab.jpg" width="100%" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-sm-6">
+          <h2>Preliminary Experiments</h2>
+          <p>
+            We conduct several experiments to verify the assumed behavior of Android and iOS. In particular, we test if an unreachable reflection and a ping reflection is triggered for IPv4 and IPv6. The results indicate that those reflections are triggered for IPv4 only for Android and for IPv6 for Android and iOS.
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <table class="table">
+            <tr>
+              <th>Vulnerable</th>
+              <th>iOS</th>
+              <th>Android</th>
+            </tr>
+            <tr>
+              <td>IPv4</td>
+              <td> no </td>
+              <td> yes </td>
+            </tr>
+            <tr>
+              <td>IPv6</td>
+              <td> yes </td>
+              <td> yes </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Commercial Network</h2>
+          <p>
+            To demonstrate the practical feasibility of the IMP4GT attacks, we have implemented a full end-to-end version of the attack within a commercial network and commercial phone within our lab environment. For the LTE relay, we use the open source LTE Software Stack <a href="https://www.srslte.com">srsLTE</a> by <a href="http://www.softwareradiosystems.com/">Software Radio System</a>. A shielding box stabilizes the radio layer and prevents interferences with the real network. We provide traces for the interested parties, e.g., researchers or providers.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <br>
+    <div class="container" id="affected">
+      <h1 class="display-4">Am I affected?</h1>
+      <hr>
+      <br>
+      <div class="row">
+        <div class="col-sm-9">
+          <h2>Attack Probability</h2>
+          <p> 
+            Probably not! The attacker needs to be highly skilled and in close proximity to the victim. Besides the specialized hardware and a customized implementation of the LTE protocol stack, conducting the attack outside a controlled lab environment and withouth a shielding box would also require more engineering effort. However, for single targets of high interest it might be worth to meet the constraints above
+          </p>
+        </div>
+
+        <div class="col-sm-3">
+          <img src="images/thinking_guy.png" width="50%" class="img-fluid" alt="Responsive image">
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="container" id="consequences">
+      <h1 class="display-4">Consequences</h1>
+      <hr>
+      <br>
+      <div class="row">
+        <div class="col-sm-12">
+          <p> The attacker can impersonate the victim or the network on the IP layer, which means that it is possible to send and receive IP packets with the stolen identity. However, the attacker <i>cannot</i> access your private mail account or messengers, place phone calls, or break the TLS encryption. We list the consequences for operators, law enforcement, and users as follows.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <img src="images/network_operator.png" width="85%" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-sm-8">
+          <h2>Operators</h2>
+          <p>
+            Operators rely on mutual authentication for billing or authorization, for example, certain service websites are only accessible with network-layer identifier. IMP4GT allows allows an adversary to use the victim's identity on such service sites if no additional authorization is required, e.g., to buy a data pass. In case you work for a provider and need more information, please contact the <a href="https://www.gsma.com/security/">GSMA security group</a>.
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-9">
+          <h2>Law enforcement</h2>
+          <p>
+            With IMP4GT, an attacker can forge any traffic to the Internet, e.g., to use the identity of a victim for uploading critical material. In cases where law enforcement agencies request the identity of a user for a particular public IP address (lawful disclosure request), the activities of an IMP4GT influence the results of an investigation.
+          </p>
+        </div>
+        <div class="col-sm-3">
+          <img src="images/law_enforcement.png" width="60%" class="img-fluid" alt="Responsive image">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <img src="images/cons.png" width="70%" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-sm-9">
+          <h2>Users</h2>
+          <p>
+            Users must deal with the consequences of impersonations targeting operators, and impersonations that interfere with law enforcement. For example, the provider charges the user's bank account when additional packages are bought, or a law enforcement agency initiates an investigation based on the false assumption of mutual authentication. Besides these uplink attacks, the downlink impersonation can be a stepping stone for follow-up attacks that exploit vulnerabilities in network applications.
+          </p>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="container" id="4G_5G">
+      <h1 class="display-4">Is 5G also vulnerable?</h1>
+      <hr>
+      <br>
+      The attack exploits missing integrity protection and the reflection mechanism of the operating system. Only the first attack vector is specific for mobile networks, the latter is defined by the operating system of a mobile phone. We discuss the vulnerability of 5G regarding its two deployment phases:
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
+          <h4>Non-standalone (NSA)</h4>
+          <p>
+            <strong>Non-standalone (NSA)</strong> with dual connectivity is the first phase, in which the phone connects via 4G for all control data, but uses 5G for user data. The <a href="https://www.3gpp.org/news-events/1975-sec_5g">3GPP 5G Security working group</a> stated: ``Although integrity protection for UP (user plane) data is supported in 5G networks, it will not be used in dual connectivity case''. Thus, the early 5G deployments is vulnerable to IMP4GT attacks.
+          </p>
+        </div>
+        <div class="col-sm-6">
+          <h4>Standalone (SA)</h4>
+          <p>
+            The second phase will be the <strong>standalone (SA)</strong> phase, in which the phone has a control connection to the 5G core network along with the 5G  radio layer. Its current state is as follows: User-data integrity protection is optional with either a full rate or limited to 64 kbit/s. As 5G promises connections of <a href="https://www.etsi.org/technologies/5g">up to 20Gbit/s</a>, the attack vector remains exploitable in 5G [TS38.300, TS33.501]
+          </p>
+        </div>
+        
+      </div>
+      <center><h4>We emphasize the need for a <strong>mandatory</strong> full-rate integrity protection for 5G.</h4></center>
+    </div>
+
+
+    <br>
+
+    <div class="container" id="paper">
+      <h1 class="display-4">Technical Paper</h1>
+
+      <hr>
+      <div>
+        Our work will appear at the
+        <a href="https://www.ndss-symposium.org/">NDSS Symposium 2020</a>. A
+        <a href="media/imp4gt.pdf">pre-print of the paper</a> that contains all details is already available
+        (<a href="media/imp4gt.pdf">PDF file</a>).
+      </div>
+
+      <br>
+      <h4>Abstract</h4>
+      <div>
+        Long Term Evolution (LTE/4G) establishes mutual authentication with a provably secure AKA (Authentication
+        and
+        Key Agreement) protocol on layer three of the network stack. Permanent integrity protection of the control
+        plane
+        safeguards the traffic against manipulations. However, missing integrity protection of the user plane still
+        allows an adversary to manipulate and redirect IP packets, as recently demonstrated.
+        <br>
+        In this work, we introduce a novel cross-layer attack that exploits the existing vulnerability on layer two
+        and
+        extends it with an attack mechanism on layer three. More precisely, we take advantage of the default IP
+        stack
+        behavior of operating systems and show that this combination allows an active attacker to impersonate a user
+        towards the network and vice versa; we name these attacks IMP4GT (IMPersonation attacks in 4G neTworks). In
+        contrast to a simple redirection attack as demonstrated in prior work, our attack dramatically extends the
+        possible attack scenarios and thus emphasizes the need for user plane integrity protection in mobile
+        communication standards. The results of our work imply that providers can no longer rely on mutual
+        authentication for billing, access control, and legal prosecution. On the other side, users are exposed to
+        any
+        incoming IP connection as an adversary can bypass the provider's firewall. To demonstrate the practical
+        impact
+        of our attack, we conduct two IMP4GT attack variants in a commercial network, which---for the first
+        time---completely break the mutual authentication aim of LTE on the user plane in a real-world setting.
+      </div>
+
+      <br>
+      <h4>BibTeX</h4>
+      <div>
+        If you want to cite the paper, please use the following BibTeX entry:
+      </div>
+
+      <br>
+      <pre class="code">@inproceedings{rupprecht-20-imp4gt,
+    author = {Rupprecht, David and Kohls, Katharina and Holz, Thorsten and P\"{o}pper, Christina},
+    title = {IMP4GT: IMPersonation Attacks in 4G NeTworks},
+    booktitle = {ISOC Network and Distributed System Security Symposium (NDSS)},
+    year = {2020},
+    month = feb,
+    publisher = {ISOC}
+}</pre>
+    </div>
+
+    <br>
+
+    <div class="container" id="faq">
+      <h1 class="display-4">Frequently Asked Questions</h1>
+      <hr>
+
+      <br>
+
+      <div>
+        <a class="black-text" data-toggle="collapse" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+          <h5>What does
+            <i>close proximity</i> mean?&nbsp
+            <i class="fa fa-angle-down rotate-icon"></i>
+          </h5>
+        </a>
+        <div class="collapse" id="collapse3">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-text">
+                In our test setup, we conducted the attacks with minimal distance between the victim's phone and our
+                LTE
+                relay. This is not possible in a realistic
+                scenario, where the attacker needs to deploy the LTE relay without revealing herself. We can assume
+                that our attacks are comparable to so-called
+                <i><a href="https://en.wikipedia.org/wiki/IMSI-catcher">IMSI catchers / Stingrays</a></i> that are
+                successful in ranges of up to approximately 2km.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div>
+        <a class="black-text" data-toggle="collapse" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+          <h5>What is the difference to
+            <i>IMSI catchers</i>?&nbsp
+            <i class="fa fa-angle-down rotate-icon"></i>
+          </h5>
+        </a>
+        <div class="collapse" id="collapse4">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-text">
+                The technical characteristics of the attack are comparable to <a
+                  href="https://en.wikipedia.org/wiki/IMSI-catcher">IMSI catchers</a>, as in both cases the attacker
+                simulates a malicious network towards the victim. Nevertheless, we find two general differences.
+                First,
+                the relay <i>actively</i> sends data to the mobile network and acts as a Man-in-the-Middle attacker
+                that
+                modifies packet contents. Second, classical IMSI-catching attacks try to identify and localize the
+                victim. In the IMP4GT attack, the attacker impersonates a victim or network.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div>
+        <a class="black-text" data-toggle="collapse" href="#collapse5" aria-expanded="false" aria-controls="collapse4">
+          <h5>What is the difference to the
+            <i> aLTEr attack</i>?&nbsp
+            <i class="fa fa-angle-down rotate-icon"></i>
+          </h5>
+        </a>
+        <div class="collapse" id="collapse5">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-text">
+                The aLTEr attack aims to redirect a user to a malicious website, while the IMP4GT impersonates a
+                victim
+                towards the network or vice versa. Similar to the aLTEr attack, the IMP4GT exploits missing
+                integrity
+                protection of the user plane. The IMP4GT attack goes further and exploits additionally operating
+                system's
+                reflection mechanism to establish an encryption and decryption oracle that allows to inject
+                arbitrary
+                packets and access the payload of existing packets.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div>
+        <a class="black-text" data-toggle="collapse" href="#collapse7" aria-expanded="false" aria-controls="collapse7">
+          <h5>Did you responsibly disclose the attacks?&nbsp
+            <i class="fa fa-angle-down rotate-icon"></i>
+          </h5>
+        </a>
+        <div class="collapse" id="collapse7">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-text">
+                Yes, we have contacted the GSMA on 16.05.19 about the issues with the
+                <a href="https://www.gsma.com/security/gsma-coordinated-vulnerability-disclosure-programme/">Coordinated
+                  Vulnerability Disclosure Programme</a>. The GSMA informed the network providers and issued a
+                <a
+                  href="http://www.3gpp.org/ftp/Inbox/LSs_from_external_bodies/GSMA_CVD/CVD%20Doc24_01%20LS%20to%203GPP.zip">
+                  liaison statement</a> to inform the 3GPP specification body. The 3GPP ran group evaluated possible
+                actions
+                for LTE and the upcoming 5G specification and composed a
+                <a href="https://www.3gpp.org/ftp/tsg_ran/WG2_RL2/TSGR2_107/LSout/R2-1911819.zip">statement</a>
+                regarding the attacks.
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+
+      <div>
+        <a class="black-text" data-toggle="collapse" href="#collapse8" aria-expanded="false" aria-controls="collapse7">
+          <h5>Is this attack specific to a particular network vendor?&nbsp
+            <i class="fa fa-angle-down rotate-icon"></i>
+          </h5>
+        </a>
+        <div class="collapse" id="collapse8">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-text">
+                No, the attack builds upon a specification flaw which means that all network vendors are equally
+                vulnerable.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+    </div>
+  </div>
+  </div> <!-- Footer -->
+  <footer class="page-footer font-small elegant-color-dark pt-4 mt-4">
+
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+
+          <!-- Content -->
+          <h5 class="text-uppercase">IMP4GT: IMPersonation Attacks in 4G NeTworks</h5>
+          <p>David Rupprecht, Katharina Kohls, Thorsten Holz, and Christina P&ouml;pper</br>
+            Ruhr University Bochum &amp; New York University Abu Dhabi</p>
+
+          <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Illustrations for IMP4GT </span> by <a href="http://kkohls.org" property="cc:attributionName" rel="cc:attributionURL">Katharina Kohls</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
+
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+        <!-- Grid column -->
+        <div class="col-md-6 mb-md-0 mb-3">
+
+          <!-- Links -->
+          <h5 class="text-uppercase"><a href="/contact.html">Contact</a></h5>
+          <h5 class="text-uppercase"><a href="/privacy.html">Privacy</a></h5>
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+
+    <!-- Copyright -->
+    <!-- <div class="footer-copyright text-center font-small elegant-color-dark pt-4 mt-4">
+   
+    </div> -->
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script>
+    $('.navbar-collapse a').click(function () {
+      $(".navbar-collapse").collapse('hide');
+    });
+  </script>
+  <script>
+    $(".smooth-scroll").on('click', 'a', function (event) {
+      event.preventDefault();
+      var elAttr = $(this).attr('href');
+      var offset = ($(this).attr('data-offset') ? $(this).attr('data-offset') : 0);
+      var fixedTop = $('.navbar.fixed-top');
+      if (fixedTop && fixedTop.length) {
+        offset = fixedTop.outerHeight();
+      }
+      $('body,html').animate({
+        //scrollTop: $(elAttr).offset().top - offset
+        scrollTop: $(elAttr).offset().top - 56
+      }, 700);
+    });
+  </script>
+</body>
+
+</html>

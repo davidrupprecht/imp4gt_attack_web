@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Breaking LTE on Layer Two</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <link href="css/style.min.css" rel="stylesheet">
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300,400);
+    @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+    figure.snip1390 {
+      font-family: 'Roboto', Arial, sans-serif;
+      position: relative;
+      float: left;
+      overflow: hidden;
+      margin: 10px 1%;
+      min-width: 230px;
+      max-width: 315px;
+      width: 100%;
+      color: #000000;
+      text-align: center;
+      font-size: 16px;
+      background-color: #4B515D;
+      padding: 30px;
+      #background-image: linear-gradient(-25deg, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    figure.snip1390 *,
+    figure.snip1390 *:before,
+    figure.snip1390 *:after {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all 0.35s ease;
+      transition: all 0.35s ease;
+    }
+
+    figure.snip1390 figcaption {
+      width: 100%;
+    }
+
+    figure.snip1390 h2,
+    figure.snip1390 h4,
+    figure.snip1390 blockquote {
+      margin: 0;
+    }
+
+    figure.snip1390 h2,
+    figure.snip1390 h4 {
+      font-weight: 300;
+    }
+
+    figure.snip1390 h2 {
+      color: #ffffff;
+    }
+
+    figure.snip1390 h4 {
+      color: #a6a6a6;
+    }
+
+    figure.snip1390 blockquote {
+      font-size: 1em;
+      padding: 45px 20px 40px 50px;
+      margin-top: 30px;
+      background-color: #ffffff;
+      border-radius: 5px;
+      box-shadow: inset -1.4px -1.4px 2px rgba(0, 0, 0, 0.3);
+      #background-image: linear-gradient(-25deg, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+      text-align: left;
+      position: relative;
+    }
+
+    figure.snip1390 blockquote:before {
+      font-family: 'FontAwesome';
+      content: "\201C";
+      position: absolute;
+      font-size: 70px;
+      opacity: 0.25;
+      font-style: normal;
+      top: 0px;
+      left: 20px;
+    }
+
+    figure.snip1390 .profile {
+      width: 130px;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.4);
+      margin-bottom: 10px;
+      border: solid 0px #A6A57A;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark elegant-color-dark">
+      <a class="navbar-brand smooth-scroll" href="/index.html#title">aLTEr</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <!-- Left -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/index.html#intro">Introduction</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html#passive">Passive Attacks</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html#active">Active Attack</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html#paper">Paper</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html#faq">FAQ</a>
+            </li>
+          </ul>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="pt-5 mx-lg-5">
+    <div class="container" id="privacy">
+
+      <br>
+      <h1 class="display-4">Privacy</h1>
+      <hr>
+
+      <p>This Privacy Statement is designed to tell you about our practices regarding collection, use and disclosure of information
+        that you may provide via this site. Please be sure to read this entire Privacy Statement before using or submitting
+        information to this site.
+      </p>
+
+      <br>
+      <h2> Consent</h2>
+
+      <p>By using this site, you agree with the terms of this Privacy Statement. Whenever you submit information via this site,
+        you consent to the collection, use, and disclosure of that information in accordance with this Privacy Statement.
+      </p>
+
+      <br>
+      <h2>Personal data</h2>
+
+      <p>Currently we collect and hold your personal data if you email us via one of the contact addresses on this Site. You can use this website without divulging any personal information. Further, we collect general connection data in the log files of server. The collected data can include the browser type, operation system, access data and time, and the IP address of the client. The purpose of this is to provide a best possible delivery of the webpage and to protect the system against possible attacks. The data are held for a period of a maximum of two weeks and are stored separately from other personal data.
+      </p>
+
+      <br>
+      <h2>Voluntary information</h2>
+
+      <p>We may occasionally ask for further information about you to enable us to better provide you with appropriate information.
+        You may at any time request that this information be removed from our database by writing to <a href="mailto:david.rupprecht@rub.de" style="text-decoration: none">david.rupprecht@rub.de</a>. Users may find out what personal information we hold about themselves on our database at any time, by writing to the above address.</p>
+
+      <br>
+
+      <h2>Links</h2>
+
+      <p>Where www.alter-attack.net contains links to other websites, we are not responsible for the privacy practices or content
+        of other such sites. We encourage users to read the privacy statements of each site they link to that may collect
+        personal data. Additionally, we embed a YouTube Video on the site for the attack demonstration. We encourage to read the YouTube <a href="https://www.youtube.com/yt/about/policies/#community-guidelines">privacy policies</a> </p>
+
+      <br>
+      <h2>Contact</h2>
+
+      <p>The Site is owned and operated by David Rupprecht. If you have any questions, comments, or concerns about this Privacy Statement or the information practices of this site, please contact us:</p>
+
+      <p>
+        Ruhr-Uni­ver­si­ty Bo­chum
+        <br> Re­se­arch Group In­for­ma­ti­on Se­cu­ri­ty
+        <br> Uni­ver­si­täts­stras­se 150
+        <br> ID 2 / 121
+        <br> 44780 Bo­chum / Ger­ma­ny
+        <br>
+
+        <br> Phone: (+49) (0) 234 32 - 27814 (Secreta­ry's of­fice)
+        <br> Fax: (+49) (0) 234 32 - 14347
+        <br> E-mail:
+        <a href="mailto:david.rupprecht@rub.de" style="text-decoration: none">david.rupprecht@rub.de</a>
+      </p>
+
+      <br>
+      <h2>Changes</h2>
+
+      <p>Please accept this Privacy Statement as current. We reserve the right to change, modify or update this statement at
+        any time without notice</p>
+
+    </div>
+
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="page-footer font-small elegant-color-dark pt-4 mt-4">
+
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+
+          <!-- Content -->
+          <h5 class="text-uppercase">Breaking LTE on Layer Two</h5>
+          <p>David Rupprecht, Katharina Kohls, Thorsten Holz, and Christina P&ouml;pper</br>
+            Ruhr-Universit&auml;t Bochum &amp; New York University Abu Dhabi</p>
+
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-md-none pb-3">
+
+        <!-- Grid column -->
+        <div class="col-md-6 mb-md-0 mb-3">
+
+          <!-- Links -->
+          <h5 class="text-uppercase">
+            <a href="/contact.html">Contact</a>
+          </h5>
+          <h5 class="text-uppercase">
+            <a href="/privacy.html">Privacy</a>
+          </h5>
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <!--<div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
+  </div>-->
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script>
+    $('.navbar-collapse a').click(function () {
+      $(".navbar-collapse").collapse('hide');
+    });
+  </script>
+  <script>
+    $(".smooth-scroll").on('click', 'a', function (event) {
+      event.preventDefault();
+      var elAttr = $(this).attr('href');
+      var offset = ($(this).attr('data-offset') ? $(this).attr('data-offset') : 0);
+      var fixedTop = $('.navbar.fixed-top');
+      if (fixedTop && fixedTop.length) {
+        offset = fixedTop.outerHeight();
+      }
+      $('body,html').animate({
+        //scrollTop: $(elAttr).offset().top - offset
+        scrollTop: $(elAttr).offset().top - 56
+      }, 700);
+    });
+  </script>
+</body>
+
+</html>
